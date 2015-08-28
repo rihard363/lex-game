@@ -5,4 +5,4 @@ var world = new Map(10,10);
 world.addPlayer(3, 7, 'Petya');
 world.addPlayer(6, 10, 'Vano');
 console.log(world);
-console.log(world.getPlayers(7,8,5));
+console.log(world.getPlayers(9,8,5));
