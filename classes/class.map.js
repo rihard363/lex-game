@@ -21,7 +21,7 @@ class Map {
 	getPlayers(x,y,r){
 		var players = [];
 		this.knights.forEach((e,i)=>{//для каждого элеента из массива рыцари, где е - элемент, i - номер элемента  
-			if(e.x>=r+x || e.y>=r+y) {
+			if(e.x<=r+x || e.y<=r+y) {
 				players.push(e);
 			}
 
