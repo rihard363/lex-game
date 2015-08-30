@@ -56,7 +56,7 @@ class Knight {
 			}
 		return s;
 		}
-	think	
+	think(){	
 	select(s){
 		
 			
