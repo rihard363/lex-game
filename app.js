@@ -2,7 +2,10 @@
 import Map from './classes/class.map.js';
 import Knight from './classes/class.knight.js';
 var world = new Map(10,10);
-world.addPlayer(3, 7, 'Petya');
-world.addPlayer(6, 10, 'Vano');
+world.addPlayer(3, 7, 4,'Petya');
+world.addPlayer(6, 10, 4,'Vano');
 console.log(world);
-console.log(world.getPlayers(2,1,3));
+for (var a = 0; a<100; a++ ) {
+    world.step();
+}
+console.log(world);

@@ -12,10 +12,10 @@ class Map {
 	addPlayer(x,y,name) {
 		var p = new Knight(x,y,name);
 		this.knights.push(p);
-	}
+			}
 	step() {
 		for (var index = 0; index < this.knights.length; ++index) {
-			this.knights[index].go();
+			this.knights[index].go(this);
 			}
 	}
 	getPlayers(x,y,r){
@@ -28,6 +28,7 @@ class Map {
 		})
 		return players;
 	};
+	
 }
 
 
