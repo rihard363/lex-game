@@ -1,5 +1,3 @@
-
-
 class Knight {
 	constructor(x,y,r,name) {
 		this.x = x;
@@ -8,11 +6,11 @@ class Knight {
 		this.name = name;
 	}
 	go(map){
-		var poss = this.possibility(map);
-		this.select(poss);// Данные две строки  позволяют мне вызвать массив s из possibility и использовать его в select
-		 }
-	possibility(map){
 		var rad = map.getPlayers(this.x,this.y,this.r);
+		var poss = this.possibility(map,rad);// посылаем переменные из go  в possibility
+		this.think(map,rad,poss);// Данные две строки  позволяют мне вызвать массив s из possibility и использовать его в select
+		 }
+	possibility(map,rad){
 		var s = [];
 		var a1 = {name: 'Right',action: (()=>{this.x++})};
 		var a2 ={name: 'Left',action: (()=>{this.x--})};
@@ -56,12 +54,49 @@ class Knight {
 			}
 		return s;
 		}
-	think(){	
-	select(s){
-		
-			
-	}	
+	think(map,rad,poss){
+		var step = null;
+		console.log('---------------', rad);
+		poss.forEach((e,i)=> {
+			console.log(e);
+			switch (e.name) {
+				case 'Right':
+					if(rad.length == 0 && this.x - map.x/2 < 0){
+	    				step = e;
+					}
+					if(rad.length != 0 && rad[0].x > this.x){
+	    				step = e;
+					}
+					break;
+				case 'Left':
+					if(rad.length == 0 && this.x - map.x/2 > 0){
+	    				step = e;
+					}
+					if(rad.length != 0 && rad[0].x < this.x){
+	    				step = e;
+					}
+					break;
+				case 'Down':
+					if(rad.length == 0 && this.y - map.y/2 > 0){
+	    				step = e;
+					}
+					if(rad.length != 0 && rad[0].y < this.y ){
+	    				step = e;
+					}
+					break;
+				case 'Up':
+					if(rad.length == 0 && this.y - map.y/2 < 0){
+		    			step=e;
+					}
+					if(rad.length != 0 && rad[0].y > this.y){
+	    				step = e;
+					}
+					break;
+			}
+		})
+		return (step.action());
 	}
+}
 
 /*создать методы. 1 интерфейс (точка вхождения), 2 определяется с массивом возможностей и фильтрует возможности, 4 исполняет любое действие*/
 //сделать движение рыцарей к определенной точке
